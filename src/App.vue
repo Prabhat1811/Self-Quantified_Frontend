@@ -20,11 +20,12 @@ import route from './router';
 
 <style lang="scss">
   :root{
-    --primary: #4ade80;
+    --primary: #4ade89;
     --grey: #64748b;
     --dark: #1e293b;
     --dark-alt: #334155;
     --light: #f1f5f9;
+    --cream-light: #FFFBF0;
     --sidebar-width: 300px;
   }
 
@@ -35,7 +36,7 @@ import route from './router';
   }
 
   body{
-    background: var(--light);
+    background-color: var(--cream-light);
   }
 
   button{

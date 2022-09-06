@@ -10,8 +10,10 @@ import VueCookies from 'vue-cookies'
 import './assets/main.css'
 
 const app = createApp(App)
+const store = createPinia()
 
-app.use(createPinia())
+// app.use(createPinia())
+app.use(store)
 app.use(router)
 app.use(VueCookies)
 

@@ -67,6 +67,10 @@ const ToggleMenu = () => {
         padding: 1rem;
         user-select: none;
 
+        // position: absolute;
+        height: 100%;
+        overflow-y: auto;
+
         background-color: var(--dark);
         color: var(--light);
 
