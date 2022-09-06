@@ -4,7 +4,7 @@ export const myStore = defineStore({
   id: 'store',
   state: () => ({
     baseURL: "http://127.0.0.1:8000",
-    getTrackerURL: "http://127.0.0.1:8000/api/tracker",
+    trackerURL: "http://127.0.0.1:8000/api/tracker",
     authToken: "",
     trackers: []
   }),

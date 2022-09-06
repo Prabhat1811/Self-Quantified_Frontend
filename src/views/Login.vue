@@ -41,11 +41,14 @@ import { myStore }  from '../stores/counter'
 import axios from 'axios'
 
 export default {
+    setup(){
+      const store = myStore()
+      return { store }
+    },
     data() {
       return {
-        store: myStore(),
-        // loginURL: myStore().baseURL + '/login?include_auth_token',
-        loginURL: 'http://127.0.0.1:8000/login?include_auth_token',
+        loginURL: myStore().baseURL + '/login?include_auth_token',
+        // loginURL: 'http://127.0.0.1:8000/login?include_auth_token',
         email: "",
         password: "",
         errorMessage: ""
@@ -59,23 +62,6 @@ export default {
                 "email": this.email,
                 "password": this.password
               }
-
-        // const data2 = await res
-        // console.log(data2)
-
-        // const res = await axios.post(this.loginURL,
-        //   loginData,
-        //   { "Content-Type": "application/json" }
-        //   )
-        //   .then((response) => {
-        //     $cookies.set("csrf_token", response.data.response.csrf_token)
-        //     $cookies.set("auth_token", response.data.response.user.authentication_token)
-        //     $router.push('/home')
-        //   })
-        //   .catch((response) => {
-        //     //handle error
-        //     this.errorMessage = response.response.data.response.errors[0]
-        //   });
 
         const res = await axios.post(this.loginURL,
           loginData,

@@ -1,12 +1,12 @@
 <template>
   <main class="home-page">
-    <h1>Quantified-Self</h1>
-    <!-- <div v-for="tracker in trackers" :key="tracker.id">
-      <h2>{{ tracker.name }}</h2>
-      <h2>{{ tracker.description }}</h2>
-    </div> -->
+    <nav class="navbar bg-light my-navbar">
+      <div class="container-fluid">
+        <a class="navbar-brand">Quantified-Self</a>
+        <NewTrackerModal />
+      </div>
+    </nav>
 
-    <!-- Tracker = {{ this.trackers }} -->
     <Trackers />
 
   </main>
@@ -17,6 +17,7 @@
   import { myStore } from '@/stores/counter'
   import Trackers from '@/components/Trackers.vue'
   import axios from 'axios'
+  import NewTrackerModal from '@/components/NewTrackerModal.vue'
  
 
   export default {
@@ -30,12 +31,13 @@
       }
     },
     components: {
-      Trackers
-    },
+    Trackers,
+    NewTrackerModal
+},
     methods: {
       async fetchTrackers() {
 
-        await axios.get(this.store.getTrackerURL, {'headers' : { 
+        await axios.get(this.store.trackerURL, {'headers' : { 
           "Content-Type": "application/json",
           "Authentication-Token": this.$cookies.get("auth_token")
         }})
@@ -54,7 +56,14 @@
 
   .home-page{
     min-height: 100vh;
+    // max-width: 80%;
+    padding: 0 0;
+    margin-top: 0;
     background-color: #fff;
+
+    .my-navbar{
+
+    }
   }
 
 </style>
