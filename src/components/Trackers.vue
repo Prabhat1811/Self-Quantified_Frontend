@@ -37,13 +37,13 @@ export default {
     display: flex;
     flex-direction: column;
     // flex: 2 1 auto;
-    width: 90%;
+    width: 70%;
     margin: auto auto;
-    // margin: auto auto;
-    .tracker-cards{
-      // padding: 1rem;
     
+    @media (max-width: 768px) {
+      width: 100%;
     }
+    
 }
 
 </style>

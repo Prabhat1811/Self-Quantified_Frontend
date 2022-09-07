@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
     <aside :class="`${is_expanded && 'is-expanded'}`">
         <div class="logo">            
             <img src="../assets/logo.svg" alt="Vue">
@@ -57,7 +57,7 @@ const ToggleMenu = () => {
 
 </script>
 
-<style lang="scss" scoped>
+<!-- <style lang="scss" scoped>
     aside{
         display: flex;
         flex-direction: column;
@@ -190,4 +190,4 @@ const ToggleMenu = () => {
         }
 
     }
-</style>
+</style> --> -->

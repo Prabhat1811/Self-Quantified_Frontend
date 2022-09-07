@@ -2,19 +2,23 @@
 
   <div class="app">
     <!-- v-if="['login', 'register'].indexOf($route.name) -->
-    <Sidebar v-if="!$route.meta.hideSidebar" />
-
+    <!-- <Sidebar v-if="!$route.meta.hideSidebar" /> -->
+    <Navbar />
 
     <!-- <router-link to="about">Friends</router-link> -->
     <router-view />
+
+    <Footer />
   </div>
 </template>
 
 <script setup>
 // import { RouterLink, RouterView } from 'vue-router'
 
-import Sidebar from './components/Sidebar.vue'
+// import Sidebar from './components/Sidebar.vue'
 import route from './router';
+import Navbar from './components/Navbar.vue';
+import Footer from './components/Footer.vue';
 
 </script>
 
@@ -27,37 +31,34 @@ import route from './router';
     --light: #f1f5f9;
     --cream-light: #FFFBF0;
     --sidebar-width: 300px;
+    --navbar-margin: 12.5%;
+
   }
 
   *{
-    margin: 0;
     padding: 0;
+    margin: 0;
     box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
   }
 
-  body{
-    background-color: var(--cream-light);
-  }
+  // body{
+  //   background-color: var(--cream-light);
+  // }
 
-  button{
-    cursor: pointer;
-    appearance: none;
-    border: none;
-    outline: none;
-    background: none;
-  }
 
-  .app{
-    display: flex;
-    min-width: 100vw;
+  // .app{
+  //   display: flex;
+  //   min-width: 100vw;
+  //   min-height: 100vh;
 
-    main{
-      flex: 1 1 0;
-      padding: 2rem;
+  //   main{
+  //     flex: 1 1 0;
+  //     padding: 2rem;
 
-      @media (max-width: 768px) {
-        padding-left: 6rem;
-      }
-    }
-  }
+  //     @media (max-width: 768px) {
+  //       // padding-left: 6rem;
+  //     }
+  //   }
+  // }
 </style>

@@ -1,11 +1,14 @@
 <template>
   <main class="home-page">
-    <nav class="navbar bg-light my-navbar">
-      <div class="container-fluid">
-        <a class="navbar-brand">Quantified-Self</a>
-        <NewTrackerModal />
-      </div>
-    </nav>
+    <NewTrackerModal />
+
+    <!-- TODO -->
+    <!-- 1. Hide modal on submit -->
+    <!-- 2. Delete tracker on clicking the cross icon -->
+    <!-- 3. Update tracker list on new tracker add (No refresh) -->
+    <!-- 4. Open tracker logs on clicking on tracker -->
+    <!-- 5. Clicking on trcker is automatically scrolling to top -->
+
 
     <Trackers />
 
@@ -17,12 +20,14 @@
   import { myStore } from '@/stores/counter'
   import Trackers from '@/components/Trackers.vue'
   import axios from 'axios'
+  import { storeToRefs } from 'pinia'
   import NewTrackerModal from '@/components/NewTrackerModal.vue'
  
 
   export default {
     setup(){
       const store = myStore()
+      const { newStore } = storeToRefs(store)
       return { store }
     },
     data() {
@@ -56,14 +61,13 @@
 
   .home-page{
     min-height: 100vh;
-    // max-width: 80%;
+    min-width: 100vw;
+    max-width: 100vw;
+
     padding: 0 0;
-    margin-top: 0;
+    margin-top: 75px;
+    // margin-top: auto;
     background-color: #fff;
-
-    .my-navbar{
-
-    }
   }
 
 </style>

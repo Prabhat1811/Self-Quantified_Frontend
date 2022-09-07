@@ -6,6 +6,7 @@ export const myStore = defineStore({
     baseURL: "http://127.0.0.1:8000",
     trackerURL: "http://127.0.0.1:8000/api/tracker",
     authToken: "",
+    isLoggedIn: ($cookies.get("is_logged_in") === null) ? (false) : ($cookies.get("is_logged_in")),
     trackers: []
   }),
   getters: {
@@ -17,6 +18,13 @@ export const myStore = defineStore({
     // }
     updateTrackers(value){
       Object.assign(this.trackers, value)
+    },
+    logIn(){
+      Object.assign(this.isLoggedIn, true)
+    },
+    logOut(){
+      Object.assign(this.isLoggedIn, false)
     }
+
   }
 })

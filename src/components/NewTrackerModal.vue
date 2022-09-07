@@ -1,14 +1,18 @@
 <template>
 
-  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-  New Tracker
+  <button type="button" class="btn btn-primary modal-button btn-lg rounded-circle" data-bs-toggle="modal" data-bs-target="#trackerModal">
+  <h1>+</h1>
   </button>
 
-  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <!-- TODO -->
+  <!-- Close on add new tracker -->
+  <!-- Clear content -->
+
+  <div class="modal fade my-modal" id="trackerModal" tabindex="-1" aria-labelledby="trackerModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <h5 class="modal-title" id="trackerModalLabel">Modal title</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
@@ -25,12 +29,15 @@
               <label class="form-label">Tracker Type</label>
               <select class="form-select" aria-label="Default select example" v-model="trackerType">
                 <option value="numerical" selected>Numerical</option>
-                <option value="Multiple Choice">Multiple Choice</option>
-                <option value="Time Duration">Time Duration</option>
-                <option value="Boolean">Boolean</option>
+                <option value="multiple_choice">Multiple Choice</option>
+                <option value="time_duration">Time Duration</option>
+                <option value="boolean">Boolean</option>
               </select>
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <!-- <div class="modal-footer">
+              <button type="submit" class="btn btn-primary my-submit" data-bs-dismiss="modal">Submit</button>
+            </div> -->
+            <button type="submit" class="btn btn-primary my-submit">Submit</button>
           </form> 
         </div>
         <!-- <div class="modal-footer">
@@ -46,6 +53,9 @@
 
   import { myStore } from '@/stores/counter'
   import axios from 'axios'
+  
+  // import $ from 'jquery'
+
 
   export default{
     setup(){
@@ -71,7 +81,7 @@
           "settings": this.trackerSettings
         }
 
-        console.log(data)
+        // console.log(data)
 
         const headers = {
           "Content-Type": "application/json",
@@ -81,18 +91,50 @@
         await axios.post(this.store.trackerURL, data,  {
           headers: headers
           })
-          // .then((response) => {
-          //     $cookies.set("csrf_token", response.data.response.csrf_token)
-          //     $cookies.set("auth_token", response.data.response.user.authentication_token)
-          // })
-          // .then(this.$router.push('/'))
-          // .catch((response) => {
-          //   //handle error
-          //   this.errorMessage = response.response.data.response.errors[0]
-          // })
-
+          .then(() => {
+            this.store.trackers = [...this.store.trackers, data]
+          })
+          .then(() => {
+            $('#trackerModal').modal('hide')
+            this.trackerName = ""
+            this.trackerDesc = ""
+            this.trackerType = "numerical"
+            this.trackerSettings = ""
+          })
+          .catch((response) => {
+            //handle error
+            // this.errorMessage = response.response.data.response.errors[0]
+            console.log(response)
+          })
       }
     }
 
   }
 </script>
+
+<style lang="scss" scoped>
+
+.modal-button{
+  z-index: 999;
+
+  position: fixed;
+  bottom: 3rem;
+  right: 3rem;
+
+  width: 75px;
+  height: 75px;
+
+  @media (max-width: 768px) {
+    bottom: 1rem;
+    right: 1rem;
+
+    width: 55px;
+    height: 55px;
+  }
+}
+
+.my-submit{
+  margin-right: auto;
+}
+
+</style>
